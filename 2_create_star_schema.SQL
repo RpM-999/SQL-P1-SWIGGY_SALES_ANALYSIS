@@ -25,7 +25,7 @@ FROM dbo.[Dim_Date];
 -- 2. Dimention Location Table
 
 CREATE TABLE Dim_Location(
-    location_id INT IDENTITY(1,1) PRIMARY KEY,
+    location_ID INT IDENTITY(1,1) PRIMARY KEY,
     state VARCHAR(100),
     city VARCHAR(100),
     location VARCHAR(200)
@@ -62,9 +62,10 @@ FROM dbo.[Dim_Catagory]
 -- 5. Dimention Dish Table
 
 CREATE TABLE Dim_Dish(
-    diah_ID INT IDENTITY(1,1) PRIMARY KEY,
+    dish_ID INT IDENTITY(1,1) PRIMARY KEY,
     dish_name VARCHAR(200)
 )
+
 
 SELECT *
 FROM dbo.[Dim_Dish]
@@ -84,7 +85,7 @@ CREATE TABLE Fact_Order(
 
     price_INR DECIMAL(10,2),
     rating DECIMAL(4,2),
-    Rating_Count INT,
+    rating_count INT,
 
     FOREIGN KEY (date_ID) REFERENCES Dim_Date(date_ID),
     FOREIGN KEY (location_ID) REFERENCES Dim_Location(location_ID),
@@ -92,15 +93,6 @@ CREATE TABLE Fact_Order(
     FOREIGN KEY (catagory_ID) REFERENCES Dim_Catagory(catagory_ID),
     FOREIGN KEY (dish_ID) REFERENCES Dim_Dish(dish_ID)
 )
-
-SELECT *
-FROM [swiggy data]
-
-
-EXEC sp_rename 
-    'Fact_Order.Rating_Count',                    --      Rename Rating_Count --> rating_count
-    'rating_count',
-    'COLUMN';
 
 
 SELECT *
@@ -138,7 +130,6 @@ WHERE Order_Date IS NOT NULL;
 SELECT *
 FROM dbo.[Dim_Date]
 
-DELETE FROM Dim_Date;
 
 -- 2. Inset Data Into Dim_Location
 
@@ -156,7 +147,7 @@ FROM dbo.[swiggy data];
 
 --
 
-SELECT TOP 10 *
+SELECT *
 FROM dbo.[Dim_Location]
 
 
@@ -172,7 +163,7 @@ FROM dbo.[swiggy data];
 
 --
 
-SELECT TOP 10 *
+SELECT *
 FROM dbo.[Dim_Restaurant]
 
 
@@ -189,7 +180,7 @@ FROM dbo.[swiggy data];
 
 --
 
-SELECT TOP 10 *
+SELECT *
 FROM dbo.[Dim_Catagory]
 
 
@@ -206,7 +197,7 @@ FROM dbo.[swiggy data];
 
 --
 
-SELECT TOP 10 *
+SELECT *
 FROM dbo.[Dim_Dish]
 
 
@@ -259,4 +250,6 @@ FROM
     ON
     dds.[dish_name] = s.[Dish_Name]
 
-
+--
+SELECT *
+FROM dbo.[Fact_Order]
