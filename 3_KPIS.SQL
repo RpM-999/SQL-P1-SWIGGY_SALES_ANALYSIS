@@ -207,8 +207,58 @@ CROSS JOIN Total_Revenue tr
 ORDER BY revenue_contribution_pct DESC;
 
 
---5. 
---------------------------------------------------------------------------------------------------------------------------------------------
+--5. Top 10 Performing Cities (by Revenue) 
+
+SELECT TOP 10
+    l.[city],
+    l.[state],
+    SUM(f.[price_INR]) AS total_revenew
+FROM dbo.[Fact_Order] f  
+JOIN dbo.[Dim_Location] l  
+ON f.[location_ID] = l.[location_ID]
+GROUP BY l.[city],l.[state]
+ORDER BY total_revenew DESC;
+
+
+--6. Bottom 10 Performing Cities (by Revenue) 
+
+SELECT TOP 10
+    l.[city],
+    l.[state],
+    SUM(f.[price_INR]) AS total_revenew
+FROM dbo.[Fact_Order] f  
+JOIN dbo.[Dim_Location] l  
+ON f.[location_ID] = l.[location_ID]
+GROUP BY l.[city],l.[state]
+ORDER BY total_revenew ASC;
+
+
+----------------------------------------------------------------Restaurant Performance KPIs---------------------------------------------------
+
+--1. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -217,3 +267,6 @@ ORDER BY revenue_contribution_pct DESC;
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
