@@ -111,7 +111,8 @@ erDiagram
 
 
 
-- **Fact table:** `Fact_Order` (contains measures like `price_INR`, `rating`, `rating_count`)
+- **Fact table:** 
+    - `Fact_Order`: contains measures like `price_INR`, `rating`, `rating_count`
 - **Dimension tables:**
     - `Dim_Date`: temporal attributes (year, month, quarter)
     - `Dim_Location`: geography (state, city, location)
