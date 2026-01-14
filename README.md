@@ -56,7 +56,6 @@ Script: `1_data_cleaning_and_validation.SQL`
 
 The project follows a **Star Schema** architectural pattern to optimize for analytical queries.
 
-![Swiggy Star Schema](IMAGES/1_star_schema.png)
 
 
 
