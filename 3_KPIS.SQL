@@ -235,9 +235,81 @@ ORDER BY total_revenew ASC;
 
 ----------------------------------------------------------------Restaurant Performance KPIs---------------------------------------------------
 
---1. 
+--1. Orders per Restaurant
+
+SELECT
+    r.[restaurant_ID],
+    r.[restaurent_name],
+    COUNT(DISTINCT f.[order_ID]) AS Total_orders_per_Restaurent
+FROM DBO.[Fact_Order] f  
+JOIN DBO.[Dim_Restaurant] r  
+ON f.[restaurent_ID] = r.[restaurant_ID]
+GROUP BY r.[restaurant_ID] , r.[restaurent_name]
+ORDER BY Total_orders_per_Restaurent DESC
 
 
+
+--2. Revenue per Restaurant
+
+
+SELECT
+    r.[restaurant_ID],
+    r.[restaurent_name],
+    SUM(f.Price_INR) AS Total_Revenue
+FROM dbo.[Fact_Order] f
+JOIN dbo.[Dim_Restaurant] r
+    ON f.[restaurent_ID] = r.[restaurant_ID]
+GROUP BY r.[restaurant_ID], r.[restaurent_name]
+ORDER BY Total_Revenue DESC;
+
+
+--3. Avg Revenue per Order per Restaurant (AOV)
+
+
+SELECT
+    r.[restaurant_ID],
+    r.[restaurent_name],
+    SUM(f.[Price_INR]) * 1.0 / COUNT(DISTINCT f.[Order_ID]) AS avg_revenue_per_order
+FROM dbo.[Fact_Order] f
+JOIN dbo.[Dim_Restaurant] r
+    ON f.[restaurent_ID] = r.[restaurant_ID]
+GROUP BY r.[restaurant_ID], r.[restaurent_name]
+ORDER BY avg_revenue_per_order DESC;
+
+
+--4. Top 10 restaurants’ share of total revenue
+
+
+WITH Restaurant_Revenue AS (
+    SELECT
+        r.[restaurant_ID],
+        r.[restaurent_name],
+        SUM(f.[Price_INR]) AS revenue
+    FROM dbo.[Fact_Order] f
+    JOIN dbo.[Dim_Restaurant] r
+        ON f.[restaurent_ID] = r.[restaurant_ID]
+    GROUP BY r.[restaurant_ID], r.[restaurent_name]
+),
+Ranked_Restaurants AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (ORDER BY revenue DESC) AS rn
+    FROM Restaurant_Revenue
+),
+Total_Revenue AS (
+    SELECT SUM(revenue) AS total_revenue
+    FROM Restaurant_Revenue
+)
+SELECT
+    SUM(rr.revenue) * 100.0 / MAX(tr.total_revenue) 
+        AS top_10_revenue_concentration_pct
+FROM Ranked_Restaurants rr
+CROSS JOIN Total_Revenue tr
+WHERE rr.rn <= 10;
+
+
+
+----------------------------------------------------------------Restaurant Performance KPIs---------------------------------------------------
 
 
 
