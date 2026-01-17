@@ -309,30 +309,70 @@ WHERE rr.rn <= 10;
 
 
 
-----------------------------------------------------------------Restaurant Performance KPIs---------------------------------------------------
+----------------------------------------------------------------Category Based KPIs---------------------------------------------------
+
+-- 1. Orders by Category
+
+SELECT
+    c.[catagory],
+    COUNT(DISTINCT f.[Order_ID]) AS total_orders
+FROM dbo.[Fact_Order] f
+JOIN dbo.[Dim_Catagory] c
+    ON f.[catagory_ID] = c.[catagory_ID]
+GROUP BY c.[catagory]
+ORDER BY total_orders DESC;
+
+--2. Revenue by Category
+
+SELECT
+    c.[catagory],
+    SUM(f.[Price_INR]) AS total_revenue
+FROM dbo.[Fact_Order] f
+JOIN dbo.[Dim_Catagory] c
+    ON f.[catagory_ID] = c.[catagory_ID]
+GROUP BY c.[catagory]
+ORDER BY total_revenue DESC;
 
 
+-- 3. Category Mix %
+
+WITH Category_Revenue AS (
+    SELECT
+        c.[catagory],
+        SUM(f.Price_INR) AS revenue
+    FROM dbo.[Fact_Order] f
+    JOIN dbo.[Dim_Catagory] c
+        ON f.[catagory_ID] = c.[catagory_ID]
+    GROUP BY c.[catagory]
+),
+Total_Revenue AS (
+    SELECT SUM(revenue) AS total_revenue
+    FROM Category_Revenue
+)
+SELECT
+    cr.[catagory],
+    cr.revenue,
+    cr.revenue * 100.0 / tr.total_revenue AS category_mix_pct
+FROM Category_Revenue cr
+CROSS JOIN Total_Revenue tr
+ORDER BY category_mix_pct DESC;
 
 
+--4. Avg Price per Category (AOV by Category)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT
+    c.catagory,
+    SUM(f.Price_INR) * 1.0 / COUNT(DISTINCT f.Order_ID) AS avg_price_per_order
+FROM dbo.[Fact_Order] f
+JOIN dbo.[Dim_Catagory] c
+    ON f.[catagory_ID] = c.[catagory_ID]
+GROUP BY c.[catagory]
+ORDER BY avg_price_per_order DESC;
 
 
 --------------------------------------------------------------------------------------------------------------------------------------------
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
