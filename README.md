@@ -59,7 +59,7 @@ The project follows a **Star Schema** architectural pattern to optimize for anal
 
 |**Star Schema**| 
 |------|
-| <img src="Images\1_star_schema.png" width="1200" height="650" style="object-fit:cover;"> |
+| <img src="IMAGES\1_star_schema.png" width="1200" height="650" style="object-fit:cover;"> |
 
 ```mermaid
 erDiagram
@@ -209,7 +209,7 @@ Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below a
 
     - |**Query Result**| 
       |------|
-      | <img src="Images\5.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\5.png" width="1200" height="650" style="object-fit:cover;"> |
 
 ---
 
