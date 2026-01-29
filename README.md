@@ -175,7 +175,7 @@ Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below a
 
     - |**Query Result**| 
       |------|
-      | <img src="Images\1.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\1.png" width="1200" height="650" style="object-fit:cover;"> |
 
 - `Are we over-dependent on a few restaurants?`
 
@@ -183,8 +183,8 @@ Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below a
 
     - |**Query Result**| 
       |------|
-      | <img src="Images\2.png" width="1200" height="650" style="object-fit:cover;"> |
-      | <img src="Images\2_1.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\2.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\2_1.png" width="1200" height="650" style="object-fit:cover;"> |
 
 - `Which dishes are overpriced for demand?`
 
@@ -192,7 +192,7 @@ Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below a
 
     - |**Query Result**| 
       |------|
-      | <img src="Images\3.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\3.png" width="1200" height="650" style="object-fit:cover;"> |
 
 
 - `When should operations scale up or down?`
@@ -201,7 +201,7 @@ Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below a
 
     - |**Query Result**| 
       |------|
-      | <img src="Images\4.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="IMAGES\4.png" width="1200" height="650" style="object-fit:cover;"> |
 
 - `Weekend vs Weekday Behavior`
 
