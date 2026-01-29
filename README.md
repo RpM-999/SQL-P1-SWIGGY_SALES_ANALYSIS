@@ -57,7 +57,9 @@ Script: `1_data_cleaning_and_validation.SQL`
 The project follows a **Star Schema** architectural pattern to optimize for analytical queries.
 
 
-
+|**Star Schema**| 
+|------|
+| <img src="Images\1_star_schema.png" width="1200" height="650" style="object-fit:cover;"> |
 
 ```mermaid
 erDiagram
@@ -124,28 +126,42 @@ erDiagram
 
 ## 📈 3. KPIs
 
-- **Order and revenue KPIs:**
-    - `Total Orders`
-    - `Total Revenue (₹, GMV)`
-    - `Average Order Value (AOV)`
-    - `Orders per Day`
-    - `Orders per Quarter`
-    - `Orders per Month`
-    - `Revenue by Month (base for growth metrics)`
-    - `Month-over-Month (MoM) Revenue Growth %`
-    - `Quarter-over-Quarter (QoQ) Revenue Growth %`
+### 📊 Overall Business KPIs
 
-- **Location KPIs**
-    - `Orders by Location (State / City)`
-    - `Revenue by State / City`
-    - `Average Order Value (AOV) by Location`
-    - `Location Revenue Contribution %`
-    - `Top 10 Performing Cities (by Revenue)`
-    - `Bottom 10 Performing Cities (by Revenue)`
+- `Total Orders` - Count of all orders placed
+- `Total Revenue (₹-M)` - Gross Merchandise Value (GMV) in INR Million
+- `Average Order Value (AOV)` - Revenue per order
+- `Orders per Day` - Daily order volume trends
+- `Orders per Quarter` - Quarterly order distribution
+- `Orders per Month` - Monthly order patterns
+- `Revenue by Month` - Monthly revenue breakdown (base for growth metrics)
+- `Month-over-Month (MoM) Revenue Growth %` - Monthly revenue change percentage
+- `Quarter-over-Quarter (QoQ) Revenue Growth %` - Quarterly revenue change percentage
 
-- **Restaurant performance KPIs**
+### 📍 Location Performance KPIs
 
-See `3_KPIS.SQL` for full queries.
+- `Orders by Location (State / City)` - Order distribution across geography
+- `Revenue by State / City` - Geographic revenue breakdown
+- `Average Order Value (AOV) by Location` - Location-wise spending patterns
+- `Location Revenue Contribution %` - Each location's share of total revenue
+- `Top 10 Performing Cities (by Revenue)` - Best performing markets
+- `Bottom 10 Performing Cities (by Revenue)` - Underperforming markets requiring attention
+
+### 🍽️ Restaurant Performance KPIs
+
+- `Orders per Restaurant` - Order volume by restaurant
+- `Revenue per Restaurant` - Restaurant-wise revenue generation
+- `Avg Revenue per Order per Restaurant (AOV)` - Restaurant-specific order value
+- `Top 10 Restaurants' Share of Total Revenue` - Revenue concentration metric
+
+### 🍕 Category-Based KPIs
+
+- `Orders by Category` - Order distribution across food categories
+- `Revenue by Category` - Category-wise revenue contribution
+- `Category Mix %` - Percentage breakdown of revenue by category
+- `Avg Price per Category (AOV by Category)` - Category-specific pricing insights
+
+See [3_KPIS.SQL](3_KPIS.SQL) for detailed query implementations.
 
 ---
 
@@ -154,17 +170,46 @@ See `3_KPIS.SQL` for full queries.
 Questions are listed in `4_Business_Analysis.SQL` (fill in your findings below as you analyze).
 
 - `Which cities consistently outperform and deserve expansion budget?`
-    - Ans:
+
+    - **Ans :**  *Cities like **Bengaluru**, **Lucknow**, **Hyderabad**, and **Mumbai** are performing well every month and bringing in high revenue, so they are good choices for expanding the business. On the other hand, cities like **Panaji** and **Lucknow** have higher average order values, which means customers there are willing to spend more, making these cities suitable for premium and high-margin offerings.*
+
+    - |**Query Result**| 
+      |------|
+      | <img src="Images\1.png" width="1200" height="650" style="object-fit:cover;"> |
+
 - `Are we over-dependent on a few restaurants?`
-    - Ans:
+
+    - **Ans :** *The business is not over-dependent on a few restaurants. While some large brands  contribute more revenue,like **KFC** contribute about **8%** of total revenue.A long tail of smaller restaurants collectively adds stability and reduces risk.*
+
+    - |**Query Result**| 
+      |------|
+      | <img src="Images\2.png" width="1200" height="650" style="object-fit:cover;"> |
+      | <img src="Images\2_1.png" width="1200" height="650" style="object-fit:cover;"> |
+
 - `Which dishes are overpriced for demand?`
-    - Ans:
+
+    - **Ans :** *Dishes such as **large combo meals**, **party packs**, and **deluxe thalis** are overpriced for their demand. These items have very high prices but receive very few orders, indicating that customers are **price-sensitive** and tend to avoid them unless it is for special occasions.*
+
+    - |**Query Result**| 
+      |------|
+      | <img src="Images\3.png" width="1200" height="650" style="object-fit:cover;"> |
+
+
 - `When should operations scale up or down?`
-    - Ans:
+
+    - **Ans :** *Orders and revenue are higher during certain months like **January**, **May**, and **August**, which means operations should scale up during these periods to handle higher demand. In months where orders and revenue dip slightly, operations can scale down to optimize costs.*
+
+    - |**Query Result**| 
+      |------|
+      | <img src="Images\4.png" width="1200" height="650" style="object-fit:cover;"> |
+
 - `Weekend vs Weekday Behavior`
-    - Ans:
-- `Which restaurants are revenue-positive but brand-negative?`
-    - Ans:
+
+    - **Ans :** *Customers place many more orders on weekdays compared to weekends. However, the average order value is slightly higher on weekends, which means people tend to spend a bit more per order when they order on weekends.*
+
+    - |**Query Result**| 
+      |------|
+      | <img src="Images\5.png" width="1200" height="650" style="object-fit:cover;"> |
 
 ---
 
